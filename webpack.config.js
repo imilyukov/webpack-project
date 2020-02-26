@@ -3,7 +3,7 @@ const path = require('path');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 
-const config = require('./config/common.config');
+const config = require('./config/webcore.config');
 const loaders = require('./config/webpack.loaders');
 const plugins = require('./config/webpack.plugins');
 

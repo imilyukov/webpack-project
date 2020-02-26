@@ -1,6 +1,6 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-const config = require('./common.config');
+const config = require('./webcore.config');
 
 // Define common loader constants
 const sourceMap = config.env !== 'production';

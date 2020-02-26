@@ -11,7 +11,7 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const RobotstxtPlugin = require('robotstxt-webpack-plugin');
 const SitemapPlugin = require('sitemap-webpack-plugin').default;
 
-const config = require('./common.config');
+const config = require('./webcore.config');
 
 // Optimize CSS assets
 const optimizeCss = new OptimizeCssAssetsPlugin({
