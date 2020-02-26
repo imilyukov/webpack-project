@@ -5,7 +5,6 @@ const path = require('path');
 const WebpackBar = require('webpackbar');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const StyleLintPlugin = require('stylelint-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const RobotstxtPlugin = require('robotstxt-webpack-plugin');
@@ -38,9 +37,6 @@ const robots = new RobotstxtPlugin({
 
 // Clean webpack
 const clean = new CleanWebpackPlugin();
-
-// Stylelint
-const stylelint = new StyleLintPlugin();
 
 // Extract CSS
 const cssExtract = new MiniCssExtractPlugin({
@@ -76,11 +72,11 @@ const webpackBar = new WebpackBar({
 
 module.exports = [
   clean,
-  stylelint,
+  // stylelint,
   cssExtract,
-  ...generateHtmlPlugins(),
+  ///...generateHtmlPlugins(),
   config.env === 'production' && optimizeCss,
   config.env === 'production' && robots,
   config.env === 'production' && sitemap,
   webpackBar,
-];
+].filter((el) => !!el);

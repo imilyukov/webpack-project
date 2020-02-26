@@ -1,17 +1,13 @@
 const path = require('path');
 
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
-
 const config = require('./config/webcore.config');
 const loaders = require('./config/webpack.loaders');
 const plugins = require('./config/webpack.plugins');
 
-module.exports = () => {
-  return {
-    context: path.join(config.root, config.paths.src),
-    mode: ['production', 'development'].includes(config.env) 
-      ? config.env 
+module.exports = () => [
+  {
+    mode: ['production', 'development'].includes(config.env)
+      ? config.env
       : 'development',
     devtool: config.env === 'production'
       ? 'hidden-source-map'
@@ -24,14 +20,15 @@ module.exports = () => {
       host: config.dev_host,
       port: config.dev_port,
     },
+    context: path.join(config.root, config.paths.src),
     entry: {
-      app: 'src/app.js',
-      index: './src/pages/index.js',
-      saved: './src/pages/saved-news.js'
+      app: './app.js',
+      index: './pages/index.js',
+      saved: './pages/saved-news.js',
     },
     output: {
       path: path.resolve(__dirname, 'dist'),
-      filename: '[name].[hash].js'
+      filename: '[name].[hash].js',
     },
     optimization: {
       minimize: config.env === 'production',
@@ -41,14 +38,14 @@ module.exports = () => {
             test: /node_modules/,
             chunks: 'initial',
             name: 'vendor',
-            enforce: true
-          }
-        }
-      }
+            enforce: true,
+          },
+        },
+      },
     },
     module: {
       rules: loaders,
     },
     plugins,
-  }
-}
+  },
+];

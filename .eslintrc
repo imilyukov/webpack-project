@@ -3,6 +3,5 @@
   "env": {
     "browser": true,
     "node": true
-  },
-  "devDependencies": false
+  }
 }
